@@ -1,8 +1,9 @@
 import numpy as np
 import math
+import matplotlib.pyplot as plt
 
 
-def gradient_test(f, f_grad, x, epsilon_range=10, epsilon_0=1, verbose=False):
+def gradient_test(f, f_grad, x, epsilon_range=10, epsilon_0=1, verbose=False, plot=False, title=''):
     d = np.random.random(x.shape)
     d /= np.sum(d)
 
@@ -52,10 +53,26 @@ def gradient_test(f, f_grad, x, epsilon_range=10, epsilon_0=1, verbose=False):
         print(f"quadratic decay: {quadratic_decay}\t\t\t(should be ~4)")
         print(f"linear decay: {linear_decay}\t\t\t(should be ~2)")
 
+    if (plot):
+        indices = range(len(linearily_decreasing))
+        plt.plot(indices, linearily_decreasing)
+        plt.title(title)
+        plt.xlabel("Iteration")
+        plt.ylabel("Delta")
+        plt.legend(["First Taylor Order"])
+        plt.show()
+
+        plt.plot(indices, quadratically_decreasing)
+        plt.title(title)
+        plt.xlabel("Iteration")
+        plt.ylabel("Delta")
+        plt.legend(["Second Taylor Order"])
+        plt.show()
+
     return quadratic_decay, linear_decay
 
 
-def jacobian_test(f, jacMV, x, epsilon_range=10, epsilon_0=1, verbose=False):
+def jacobian_test(f, jacMV, x, epsilon_range=10, epsilon_0=1, verbose=False, plot=False, title=''):
     d = np.random.random(x.shape)
     d /= np.sum(d)
 
@@ -104,11 +121,18 @@ def jacobian_test(f, jacMV, x, epsilon_range=10, epsilon_0=1, verbose=False):
         print(f"quadratic decay: {quadratic_decay}\t\t\t(should be ~4)")
         print(f"linear decay: {linear_decay}\t\t\t(should be ~2)")
 
+    if (plot):
+        indices = range(len(linearily_decreasing))
+        plt.plot(indices, linearily_decreasing)
+        plt.title(title)
+        plt.xlabel("Iteration")
+        plt.ylabel("Delta")
+        plt.legend(["First Taylor Order"])
+        plt.show()
+
+        plt.plot(indices, quadratically_decreasing)
+        plt.title(title)
+        plt.legend(["Second Taylor Order"])
+        plt.show()
+
     return quadratic_decay, linear_decay
-
-
-if __name__ == "__main__":
-    f = lambda x: x ** 2
-    f_grad = lambda x: 2 * x
-
-    gradient_test(f, f_grad, np.array([5]))

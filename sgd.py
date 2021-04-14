@@ -59,26 +59,4 @@ class SGD:
         return X.transpose(), c.transpose()
 
 
-if __name__ == '__main__':
-    from data.data_loader import DataLoader
-    from softmax import Softmax
-
-    data = DataLoader.load_dataset("PeaksData.mat")
-
-    X_train = data['Yt']
-    c_train = data['Ct']
-
-    X_validate = data['Yv']
-    c_validate = data['Cv']
-
-    objective = Softmax()
-
-    #callback = lambda weights: print(objective.loss(X_validate, weights, c_validate))
-
-    sgd = SGD(objective)
-    weights = sgd.fit(X_train, c_train, epochs=100)
-
-    print(objective.loss(X_validate, weights, c_validate))
-
-
 

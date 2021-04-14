@@ -1,6 +1,5 @@
 import math
 import pytest
-import numpy as np
 
 from data.data_loader import DataLoader
 

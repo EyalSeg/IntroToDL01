@@ -1,5 +1,4 @@
 import pytest
-import math
 import numpy as np
 
 from sys import float_info
@@ -28,21 +27,21 @@ class TestSoftmax(GradientTest):
     def test_gradient_wrt_weights(self, softmax,  X, weights, biases, c):
         f = lambda W: softmax.loss(X, W, biases, c)
         f_gradient = lambda W: softmax.gradient_wrt_weights(X, W, biases, c)
-        quadratic, linear = gradient_test(f, f_gradient, weights)
+        quadratic, linear = gradient_test(f, f_gradient, weights, plot=True, title='Gradient Test w.r.t. weights')
 
         assert_decays(quadratic, linear)
 
     def test_gradient_wrt_biases(self, softmax, X, weights, biases, c):
         f = lambda b: softmax.loss(X, weights, b, c)
         f_gradient = lambda b: softmax.gradient_wrt_biases(X, weights, b, c)
-        quadratic, linear = gradient_test(f, f_gradient, biases)
+        quadratic, linear = gradient_test(f, f_gradient, biases, plot=True, title='Gradient Test w.r.t. biases')
 
         assert_decays(quadratic, linear)
 
     def test_gradient_wrt_data(self, softmax, X, weights, biases, c):
         f = lambda x: softmax.loss(x, weights, biases, c)
         f_gradient = lambda x: softmax.gradient_wrt_data(x, weights, biases, c)
-        quadratic, linear = gradient_test(f, f_gradient, X)
+        quadratic, linear = gradient_test(f, f_gradient, X, plot=True, title='Gradient Test w.r.t. data')
 
         assert_decays(quadratic, linear)
 

@@ -52,6 +52,8 @@ class TestNeuralNetwork(GradientTest):
         quadratic, linear = gradient_test(f_vectorised,
                                           f_gradient_vectorised,
                                           net.vectorise(W),
+                                          plot=True,
+                                          title='Gradient Test of all Network w.r.t. weights'
                                           )
 
         assert_decays(quadratic, linear)
@@ -66,6 +68,8 @@ class TestNeuralNetwork(GradientTest):
         quadratic, linear = gradient_test(f_vectorised,
                                           f_gradient_vectorised,
                                           net.vectorise(B),
+                                          plot=True,
+                                          title='Gradient Test of all Network w.r.t. biases'
                                           )
 
         assert_decays(quadratic, linear)

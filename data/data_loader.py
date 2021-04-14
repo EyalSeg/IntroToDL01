@@ -11,10 +11,6 @@ class DataLoader:
     def load_dataset(dataset_name):
         path = os.path.join(data_dir, dataset_name)
         data = loadmat(path)
-        #
-        # if add_bias:
-        #     data['Yt'] = DataLoader.__add_bias_to_input(data['Yt'])
-        #     data['Yv'] = DataLoader.__add_bias_to_input(data['Yv'])
 
         return data
 

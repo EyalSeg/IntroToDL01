@@ -73,7 +73,6 @@ class NeuralNetwork:
     def gradient_wrt_biases(self, X, W, B, c):
         gradient = []
 
-        # softmax
         grad = self.softmax.gradient_wrt_biases(self.x_cache[-1], W[-1], B[-1], c)
         gradient.append(grad.transpose())
         v = self.softmax.gradient_wrt_data(self.x_cache[-1], W[-1], B[-1], c)
