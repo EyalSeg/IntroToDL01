@@ -26,21 +26,24 @@ class TestDenselayer(GradientTest):
     def test_jacMV_wrt_biases(self, net, X, weights, biases, c):
         f = lambda b: net.forward(X[:, 0], weights, b)
         jacMV = lambda b, v: net.jacobian_biases(X[:, 0], weights, b) @ v.reshape(-1)
-        quadratic, linear = jacobian_test(f, jacMV, biases, plot=True, title='Jacobian Test w.r.t. biases')
+        quadratic, linear = jacobian_test(f, jacMV, biases, verbose=True,
+                                          plot=True, title='Jacobian Test w.r.t. biases')
 
         assert_decays(quadratic, linear)
 
     def test_jacMV_wrt_weights(self, net, X, weights, biases, c):
         f = lambda w: net.forward(X[:, 0], w, biases)
         jacMV = lambda w, v: net.jacobian_weights(X[:, 0], w, biases) @ v.reshape(-1)
-        quadratic, linear = jacobian_test(f, jacMV, weights, plot=True, title='Jacobian Test w.r.t. weights')
+        quadratic, linear = jacobian_test(f, jacMV, weights, verbose=True,
+                                          plot=True, title='Jacobian Test w.r.t. weights')
 
         assert_decays(quadratic, linear)
 
     def test_jacMV_wrt_data(self, net, X, weights, biases, c):
         f = lambda x: net.forward(x, weights, biases)
         jacMV = lambda x, v: net.jacobian_data(x, weights, biases) @ v.reshape(-1)
-        quadratic, linear = jacobian_test(f, jacMV, X[:, 0], plot=True, title='Jacobian Test w.r.t. data')
+        quadratic, linear = jacobian_test(f, jacMV, X[:, 0], verbose=True,
+                                          plot=True, title='Jacobian Test w.r.t. data')
 
         assert_decays(quadratic, linear)
 

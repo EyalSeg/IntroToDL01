@@ -153,12 +153,21 @@ if __name__ == "__main__":
                               batch_size=batch_size, plot=False)
         tune(tune_obj, n_trials=100, n_jobs=4)
 
-    run_softmax_experiment("PeaksData.mat", learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
-    run_softmax_experiment("GMMData.mat", learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
-    run_softmax_experiment("SwissRollData.mat", learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
+    nn_exp = True
 
-    run_nn_experiment("PeaksData.mat", hidden_dims=hidden_dims, learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
-    run_nn_experiment("GMMData.mat", hidden_dims=hidden_dims, learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
-    run_nn_experiment("SwissRollData.mat", hidden_dims=hidden_dims, learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
+    print("NN exp: " + str(nn_exp) +
+        "\nBatch size: " + str(batch_size) +
+          "\nHidden layers dimensions: " + str(hidden_dims) +
+          "\nEpochs: " + str(epochs))
+
+    if not nn_exp:
+        run_softmax_experiment("PeaksData.mat", learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
+        run_softmax_experiment("GMMData.mat", learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
+        run_softmax_experiment("SwissRollData.mat", learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
+
+    else:
+        run_nn_experiment("PeaksData.mat", hidden_dims=hidden_dims, learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
+        run_nn_experiment("GMMData.mat", hidden_dims=hidden_dims, learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
+        run_nn_experiment("SwissRollData.mat", hidden_dims=hidden_dims, learn_rate=0.008594211858637247, epochs=epochs, batch_size=batch_size, plot=True)
 
 

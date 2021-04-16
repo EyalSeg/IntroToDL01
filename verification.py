@@ -13,6 +13,7 @@ def gradient_test(f, f_grad, x, epsilon_range=10, epsilon_0=1, verbose=False, pl
     epsilons = [0.5 ** i * epsilon_0 for i in range(epsilon_range)]
 
     if verbose:
+        print('\n' + title)
         print("Should decrease quadratically\tShould decrease linearily\t\tratio\n")
 
     for epsilon in epsilons:
@@ -82,6 +83,7 @@ def jacobian_test(f, jacMV, x, epsilon_range=10, epsilon_0=1, verbose=False, plo
     epsilons = [0.5 ** i * epsilon_0 for i in range(epsilon_range)]
 
     if verbose:
+        print('\n' + title)
         print("Should decrease quadratically\tShould decrease linearily\t\tratio\n")
 
     for epsilon in epsilons:
