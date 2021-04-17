@@ -27,7 +27,9 @@ class TestDenselayer(GradientTest):
         f = lambda b: net.forward(X[:, 0], weights, b)
         jacMV = lambda b, v: net.jacobian_biases(X[:, 0], weights, b) @ v.reshape(-1)
         quadratic, linear = jacobian_test(f, jacMV, biases, verbose=True,
-                                          plot=True, title='Jacobian Test w.r.t. biases')
+                                          plot=True,
+                                          one_graph=True,
+                                          title='Jacobian Test w.r.t. biases')
 
         assert_decays(quadratic, linear)
 
@@ -35,7 +37,9 @@ class TestDenselayer(GradientTest):
         f = lambda w: net.forward(X[:, 0], w, biases)
         jacMV = lambda w, v: net.jacobian_weights(X[:, 0], w, biases) @ v.reshape(-1)
         quadratic, linear = jacobian_test(f, jacMV, weights, verbose=True,
-                                          plot=True, title='Jacobian Test w.r.t. weights')
+                                          plot=True,
+                                          one_graph=True,
+                                          title='Jacobian Test w.r.t. weights')
 
         assert_decays(quadratic, linear)
 
@@ -43,7 +47,9 @@ class TestDenselayer(GradientTest):
         f = lambda x: net.forward(x, weights, biases)
         jacMV = lambda x, v: net.jacobian_data(x, weights, biases) @ v.reshape(-1)
         quadratic, linear = jacobian_test(f, jacMV, X[:, 0], verbose=True,
-                                          plot=True, title='Jacobian Test w.r.t. data')
+                                          plot=True,
+                                          one_graph=True,
+                                          title='Jacobian Test w.r.t. data')
 
         assert_decays(quadratic, linear)
 

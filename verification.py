@@ -3,7 +3,8 @@ import math
 import matplotlib.pyplot as plt
 
 
-def gradient_test(f, f_grad, x, epsilon_range=10, epsilon_0=1, verbose=False, plot=False, title=''):
+def gradient_test(f, f_grad, x, epsilon_range=10, epsilon_0=1, verbose=False, plot=False, title='',
+                  one_graph=True):
     d = np.random.random(x.shape)
     d /= np.sum(d)
 
@@ -60,20 +61,28 @@ def gradient_test(f, f_grad, x, epsilon_range=10, epsilon_0=1, verbose=False, pl
         plt.title(title)
         plt.xlabel("Iteration")
         plt.ylabel("Delta")
-        plt.legend(["First Taylor Order"])
-        plt.show()
+
+        if not one_graph:
+            plt.legend(["First Taylor Order"])
+            plt.show()
 
         plt.plot(indices, quadratically_decreasing)
         plt.title(title)
         plt.xlabel("Iteration")
         plt.ylabel("Delta")
-        plt.legend(["Second Taylor Order"])
+
+        if not one_graph:
+            plt.legend(["Second Taylor Order"])
+        else:
+            plt.legend(["First Taylor Order", "Second Taylor Order"])
+
         plt.show()
 
     return quadratic_decay, linear_decay
 
 
-def jacobian_test(f, jacMV, x, epsilon_range=10, epsilon_0=1, verbose=False, plot=False, title=''):
+def jacobian_test(f, jacMV, x, epsilon_range=10, epsilon_0=1, verbose=False, plot=False, title='',
+                  one_graph=True):
     d = np.random.random(x.shape)
     d /= np.sum(d)
 
@@ -129,12 +138,19 @@ def jacobian_test(f, jacMV, x, epsilon_range=10, epsilon_0=1, verbose=False, plo
         plt.title(title)
         plt.xlabel("Iteration")
         plt.ylabel("Delta")
-        plt.legend(["First Taylor Order"])
-        plt.show()
+
+        if not one_graph:
+            plt.legend(["First Taylor Order"])
+            plt.show()
 
         plt.plot(indices, quadratically_decreasing)
         plt.title(title)
-        plt.legend(["Second Taylor Order"])
+
+        if not one_graph:
+            plt.legend(["Second Taylor Order"])
+        else:
+            plt.legend(["First Taylor Order", "Second Taylor Order"])
+
         plt.show()
 
     return quadratic_decay, linear_decay
