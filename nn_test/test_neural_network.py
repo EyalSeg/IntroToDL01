@@ -54,7 +54,7 @@ class TestNeuralNetwork(GradientTest):
                                           net.vectorise(W),
                                           verbose=True,
                                           plot=True,
-                                          one_graph=True,
+                                          one_graph=False,
                                           title='Gradient Test of all Network w.r.t. weights'
                                           )
 
@@ -72,7 +72,7 @@ class TestNeuralNetwork(GradientTest):
                                           net.vectorise(B),
                                           verbose=True,
                                           plot=True,
-                                          one_graph=True,
+                                          one_graph=False,
                                           title='Gradient Test of all Network w.r.t. biases'
                                           )
 

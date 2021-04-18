@@ -29,7 +29,7 @@ class TestSoftmax(GradientTest):
         f_gradient = lambda W: softmax.gradient_wrt_weights(X, W, biases, c)
         quadratic, linear = gradient_test(f, f_gradient, weights, verbose=True,
                                           plot=True,
-                                          one_graph=True,
+                                          one_graph=False,
                                           title='Gradient Test w.r.t. weights')
 
         assert_decays(quadratic, linear)
@@ -39,7 +39,7 @@ class TestSoftmax(GradientTest):
         f_gradient = lambda b: softmax.gradient_wrt_biases(X, weights, b, c)
         quadratic, linear = gradient_test(f, f_gradient, biases, verbose=True,
                                           plot=True,
-                                          one_graph=True,
+                                          one_graph=False,
                                           title='Gradient Test w.r.t. biases')
 
         assert_decays(quadratic, linear)
@@ -49,7 +49,7 @@ class TestSoftmax(GradientTest):
         f_gradient = lambda x: softmax.gradient_wrt_data(x, weights, biases, c)
         quadratic, linear = gradient_test(f, f_gradient, X, verbose=True,
                                           plot=True,
-                                          one_graph=True,
+                                          one_graph=False,
                                           title='Gradient Test w.r.t. data')
 
         assert_decays(quadratic, linear)
